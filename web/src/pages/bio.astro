@@ -1,0 +1,314 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+---
+
+<Layout
+  title="Bio"
+  description="Biografía de Andrés Cisneros, artista audiovisual de Lima, Perú. Comunicación Audiovisual PUCP. Nuevos medios, escena, sonido, electrónica."
+>
+  <div class="page-bio">
+    <div class="container">
+
+      <!-- Encabezado -->
+      <header class="bio-header">
+        <div class="bio-label">
+          <span class="label-line"></span>
+          <span>Andrés Cisneros</span>
+        </div>
+        <h1 class="bio-title">Biografía</h1>
+      </header>
+
+      <div class="bio-layout">
+
+        <!-- Columna principal -->
+        <div class="bio-main">
+
+          <section class="bio-section" aria-labelledby="bio-short">
+            <h2 id="bio-short" class="bio-section-title">Bio corta</h2>
+            <div class="prose bio-text">
+              <!-- TODO: reemplazar con bio corta definitiva (~80-100 palabras) -->
+              <p>Andrés Cisneros es un artista audiovisual de Lima, Perú. Estudia Comunicación Audiovisual en la Pontificia Universidad Católica del Perú (PUCP). Su práctica cruza el audiovisual experimental, la escena expandida, el sonido, la electrónica, los sensores y el software creativo.</p>
+              <p>Trabaja con instalaciones interactivas, sistemas técnicos como agentes escénicos, electrónica construida a medida y herramientas de software propio. Su trabajo explora las relaciones entre tecnología, territorio, cuerpo, presencia y escucha.</p>
+              <p class="todo-note"><span class="todo">[TODO: revisar y reemplazar con bio corta definitiva]</span></p>
+            </div>
+          </section>
+
+          <hr />
+
+          <section class="bio-section" aria-labelledby="bio-long">
+            <h2 id="bio-long" class="bio-section-title">Bio extendida</h2>
+            <div class="prose bio-text">
+              <!-- TODO: reemplazar con bio larga definitiva (~300-500 palabras) -->
+              <p>Andrés Cisneros desarrolla una práctica artística que no separa el arte de la técnica. Los circuitos, el código, los sensores, los protocolos de comunicación y las arquitecturas de software son para él tanto herramientas como materiales de pensamiento.</p>
+              <p>Estudia Comunicación Audiovisual en la PUCP, donde desarrolla una investigación que cruza los nuevos medios, las artes escénicas y la experimentación tecnológica. Su formación en comunicación audiovisual le permite abordar el sonido, la imagen y la luz desde una perspectiva técnica y conceptual simultáneamente.</p>
+              <p>Entre sus líneas de trabajo se encuentran las instalaciones interactivas —sistemas que escuchan, responden y derivan—, la electrónica construida a medida para proyectos específicos, el software creativo orientado a la escena y la investigación sobre sistemas técnicos como agentes dramáticos.</p>
+              <p>Su proyecto <em>Sucesos al amanecer</em> explora la escucha del paisaje del lago Titicaca mediante sensores de luz y temperatura acuática conectados a un sistema de síntesis sonora. <em>QLABZO</em> es un software de show-control desarrollado con Tauri y Rust para necesidades específicas de la escena contemporánea. <em>Entropía</em> es una instalación interactiva que investiga las retroalimentaciones entre cuerpos, máquinas, luz y sonido.</p>
+              <p>Su investigación <em>Sin cuerpo en escena</em> parte de la pregunta: ¿puede un sistema técnico actuar en el sentido teatral? ¿Tiene comportamiento, dramaturgia, error propio?</p>
+              <p class="todo-note"><span class="todo">[TODO: reemplazar con bio larga definitiva. No inventar premios, exhibiciones ni residencias]</span></p>
+              <p class="todo-note"><span class="todo">[TODO: agregar formación adicional, talleres, residencias si aplica]</span></p>
+              <p class="todo-note"><span class="todo">[TODO: agregar proyectos o colaboraciones relevantes]</span></p>
+            </div>
+          </section>
+
+          <hr />
+
+          <section class="bio-section" aria-labelledby="bio-statement">
+            <h2 id="bio-statement" class="bio-section-title">Statement</h2>
+            <div class="prose bio-text">
+              <!-- TODO: reemplazar con statement definitivo -->
+              <p class="statement-text">Trabajo en el cruce entre escucha, máquinas y territorio. Me interesa la técnica como práctica de pensamiento: los circuitos, el código, los sensores y los protocolos como formas de presencia y conocimiento.</p>
+              <p class="todo-note"><span class="todo">[TODO: reemplazar con statement definitivo en tu voz]</span></p>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Columna lateral -->
+        <aside class="bio-sidebar">
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-label">Formación</h3>
+            <ul class="sidebar-list">
+              <li>
+                <span class="item-title">Comunicación Audiovisual</span>
+                <span class="item-sub">PUCP · Lima, Perú</span>
+                <span class="item-year todo">[TODO: año de egreso]</span>
+              </li>
+              <!-- TODO: agregar formación adicional si aplica -->
+            </ul>
+          </div>
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-label">Áreas de práctica</h3>
+            <ul class="sidebar-tags">
+              <li>Audiovisual experimental</li>
+              <li>Escena expandida</li>
+              <li>Instalación interactiva</li>
+              <li>Electrónica y sensores</li>
+              <li>Software creativo</li>
+              <li>Sonido experimental</li>
+              <li>Nuevos medios</li>
+              <li>Investigación territorial</li>
+            </ul>
+          </div>
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-label">Basado en</h3>
+            <p class="sidebar-text">Lima, Perú</p>
+          </div>
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-label">Contacto</h3>
+            <a href="mailto:a.cisneros@pucp.edu.pe" class="sidebar-email">
+              a.cisneros@pucp.edu.pe
+            </a>
+          </div>
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-label">CV</h3>
+            <a href="/cv" class="sidebar-link">Ver CV →</a>
+            <!-- TODO: cuando tengas CV PDF: -->
+            <!-- <a href="/cv/cv-andres-cisneros.pdf" download class="sidebar-link">Descargar PDF →</a> -->
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-bio {
+    padding-block: var(--space-2xl);
+  }
+
+  .bio-header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .bio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: var(--space-md);
+  }
+
+  .label-line {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--copper);
+    flex-shrink: 0;
+  }
+
+  .bio-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .bio-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .bio-section-title {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 400;
+    margin-bottom: var(--space-lg);
+  }
+
+  .bio-text p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+  }
+
+  .statement-text {
+    font-size: 1.15rem !important;
+    color: var(--text) !important;
+    font-style: italic;
+    border-left: 2px solid var(--copper);
+    padding-left: var(--space-lg);
+    line-height: 1.7 !important;
+  }
+
+  .todo-note { margin-top: 0.5rem; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-block: var(--space-xl);
+  }
+
+  /* Sidebar */
+  .bio-sidebar {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-lg));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .sidebar-block {
+    border-top: 1px solid var(--border);
+    padding-top: var(--space-md);
+  }
+
+  .sidebar-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+
+  .sidebar-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .sidebar-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .item-title {
+    font-size: 0.875rem;
+    color: var(--white);
+  }
+
+  .item-sub,
+  .item-year {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .item-year.todo {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--copper);
+    background: rgba(184, 115, 51, 0.08);
+    border: 1px solid var(--copper-dim);
+    padding: 0.1em 0.4em;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .sidebar-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .sidebar-tags li {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 0.2em 0.5em;
+  }
+
+  .sidebar-text {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .sidebar-email,
+  .sidebar-link {
+    font-size: 0.82rem;
+    color: var(--copper-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .sidebar-email:hover,
+  .sidebar-link:hover {
+    color: var(--white);
+  }
+
+  @media (max-width: 900px) {
+    .bio-layout {
+      grid-template-columns: 1fr;
+    }
+    .bio-sidebar {
+      position: static;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .bio-sidebar {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

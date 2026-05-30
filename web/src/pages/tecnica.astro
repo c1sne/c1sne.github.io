@@ -1,0 +1,357 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Técnica"
+  description="Capacidades técnicas de Andrés Cisneros. Diseño audiovisual para escena, instalación interactiva, electrónica, DMX, software creativo, sonido experimental."
+>
+  <div class="page-tecnica">
+    <div class="container">
+
+      <header class="page-header">
+        <div class="header-label">
+          <span class="label-line"></span>
+          <span>Capacidades técnicas</span>
+        </div>
+        <h1 class="page-title">Técnica</h1>
+        <p class="page-desc">
+          Trabajo técnico orientado a proyectos artísticos, escénicos y de investigación. No es una lista de servicios comerciales: es un mapa de herramientas con las que construyo proyectos propios y colaboro con otros artistas.
+          <!-- TODO: ajustar descripción con tu voz -->
+        </p>
+      </header>
+
+      <!-- Capacidades principales -->
+      <section class="capabilities-section" aria-labelledby="cap-heading">
+        <h2 id="cap-heading" class="section-label-text">Áreas de trabajo técnico</h2>
+
+        <div class="capabilities-grid">
+
+          <article class="cap-item">
+            <div class="cap-header">
+              <span class="cap-icon" aria-hidden="true">◈</span>
+              <h3 class="cap-title">Diseño audiovisual para escena</h3>
+            </div>
+            <p class="cap-desc">Diseño y operación de video, imagen y audio en contextos escénicos. Trabajo con proyección, mapping, procesamiento en tiempo real y sincronización con otros sistemas escénicos.</p>
+            <ul class="cap-tools">
+              <li>Proyección y mapping</li>
+              <li>Video en tiempo real</li>
+              <li>Sincronización con cues</li>
+              <li><!-- TODO: agregar herramientas específicas que uses --></li>
+            </ul>
+          </article>
+
+          <article class="cap-item">
+            <div class="cap-header">
+              <span class="cap-icon" aria-hidden="true">◈</span>
+              <h3 class="cap-title">Sistemas de video en vivo</h3>
+            </div>
+            <p class="cap-desc">Procesamiento y composición de video en tiempo real. Integración con señales externas, sensores y sistemas de control. Construcción de pipelines de video para instalaciones y performances.</p>
+            <ul class="cap-tools">
+              <li><!-- TODO: listar software (TouchDesigner, Resolume, otro) --></li>
+              <li>NDI / HDMI routing</li>
+              <li>Captura y procesamiento en tiempo real</li>
+            </ul>
+          </article>
+
+          <article class="cap-item">
+            <div class="cap-header">
+              <span class="cap-icon" aria-hidden="true">◈</span>
+              <h3 class="cap-title">Instalación interactiva</h3>
+            </div>
+            <p class="cap-desc">Diseño e implementación de sistemas interactivos que responden a presencia, movimiento, sonido o datos ambientales. Desde el concepto hasta el montaje y operación.</p>
+            <ul class="cap-tools">
+              <li>Kinect / cámaras de profundidad</li>
+              <li>Sensores ambientales</li>
+              <li>Integración hardware-software</li>
+              <li>Protocolos OSC / MIDI / DMX</li>
+            </ul>
+          </article>
+
+          <article class="cap-item">
+            <div class="cap-header">
+              <span class="cap-icon" aria-hidden="true">◈</span>
+              <h3 class="cap-title">Electrónica y sensores</h3>
+            </div>
+            <p class="cap-desc">Diseño y construcción de circuitos electrónicos a medida para proyectos artísticos. Microcontroladores, sensores de todo tipo, actuadores físicos y sistemas embebidos.</p>
+            <ul class="cap-tools">
+              <li>ESP32 / Arduino / Raspberry Pi</li>
+              <li>Sensores: luz, temperatura, ultrasonido, IMU</li>
+              <li>DAC / ADC / amplificación</li>
+              <li>Diseño de PCB básico</li>
+            </ul>
+          </article>
+
+          <article class="cap-item">
+            <div class="cap-header">
+              <span class="cap-icon" aria-hidden="true">◈</span>
+              <h3 class="cap-title">Sonido experimental</h3>
+            </div>
+            <p class="cap-desc">Diseño sonoro experimental para instalaciones, escena y composición propia. Síntesis, procesamiento, espacialización y construcción de sistemas sonoros físicos.</p>
+            <ul class="cap-tools">
+              <li>Síntesis de audio</li>
+              <li>Procesamiento en tiempo real</li>
+              <li>Espacialización / multichannel</li>
+              <li><!-- TODO: listar DAW y herramientas de audio --></li>
+            </ul>
+          </article>
+
+          <article class="cap-item">
+            <div class="cap-header">
+              <span class="cap-icon" aria-hidden="true">◈</span>
+              <h3 class="cap-title">Iluminación y DMX</h3>
+            </div>
+            <p class="cap-desc">Diseño y programación de sistemas de iluminación para escena e instalación. Control DMX512, integración con software de show-control y automatización de comportamientos.</p>
+            <ul class="cap-tools">
+              <li>DMX512 / Art-Net</li>
+              <li>PAR LED, Moving heads</li>
+              <li>Programación de shows y cues</li>
+              <li><!-- TODO: listar consola o software DMX que uses --></li>
+            </ul>
+          </article>
+
+          <article class="cap-item">
+            <div class="cap-header">
+              <span class="cap-icon" aria-hidden="true">◈</span>
+              <h3 class="cap-title">Software creativo</h3>
+            </div>
+            <p class="cap-desc">Desarrollo de herramientas de software orientadas a proyectos artísticos. Show-control, síntesis generativa, procesamiento de datos en tiempo real, interfaces para escena.</p>
+            <ul class="cap-tools">
+              <li>Rust / Tauri</li>
+              <li>Svelte / JavaScript</li>
+              <li>Python</li>
+              <li><!-- TODO: agregar otros lenguajes o herramientas --></li>
+            </ul>
+          </article>
+
+          <article class="cap-item">
+            <div class="cap-header">
+              <span class="cap-icon" aria-hidden="true">◈</span>
+              <h3 class="cap-title">Operación técnica escénica</h3>
+            </div>
+            <p class="cap-desc">Operación técnica integral para proyectos escénicos y de performance. Coordinación de sistemas, programación de shows, pruebas y operación en vivo.</p>
+            <ul class="cap-tools">
+              <li>Show-control y cues</li>
+              <li>Integración de sistemas</li>
+              <li>Operación en directo</li>
+              <li><!-- TODO: agregar experiencia específica --></li>
+            </ul>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Protocolos y estándares -->
+      <section class="protocols-section">
+        <h2 class="section-label-text">Protocolos y estándares</h2>
+        <div class="protocols-grid">
+          {['DMX512', 'Art-Net', 'OSC', 'MIDI', 'NDI', 'I2C', 'SPI', 'UART', 'HTTP / WebSocket', 'RS-485'].map(p => (
+            <span class="protocol-tag">{p}</span>
+          ))}
+          <span class="protocol-tag todo">[TODO: agregar otros]</span>
+        </div>
+      </section>
+
+      <!-- Nota -->
+      <div class="page-note">
+        <p>
+          Este mapa técnico está en construcción. Si buscas algo específico que no aparece aquí, <a href="/contacto">escríbeme</a>.
+        </p>
+        <p class="todo">[TODO: revisar y completar lista de capacidades técnicas]</p>
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-tecnica {
+    padding-block: var(--space-2xl);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border);
+    max-width: 760px;
+  }
+
+  .header-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: var(--space-md);
+  }
+
+  .label-line {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--copper);
+    flex-shrink: 0;
+  }
+
+  .page-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: var(--space-md);
+  }
+
+  .page-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .section-label-text {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 400;
+    margin-bottom: var(--space-xl);
+  }
+
+  /* Capabilities */
+  .capabilities-section {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .cap-item {
+    background: var(--bg-2);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cap-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .cap-icon {
+    color: var(--copper);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .cap-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .cap-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .cap-tools {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+  }
+
+  .cap-tools li {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    padding-left: 0.75rem;
+    position: relative;
+  }
+
+  .cap-tools li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--copper-dim);
+    font-size: 0.65rem;
+  }
+
+  .cap-tools li:empty { display: none; }
+
+  /* Protocols */
+  .protocols-section {
+    margin-bottom: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border);
+  }
+
+  .protocols-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .protocol-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 0.3em 0.75em;
+    background: var(--bg-2);
+    transition: all 0.2s;
+  }
+
+  .protocol-tag:hover {
+    border-color: var(--copper-dim);
+    color: var(--white);
+  }
+
+  .protocol-tag.todo {
+    color: var(--copper);
+    border-color: var(--copper-dim);
+    opacity: 0.6;
+  }
+
+  /* Note */
+  .page-note {
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .page-note p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .page-note a {
+    color: var(--copper-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .page-note a:hover { color: var(--white); }
+
+  @media (max-width: 768px) {
+    .capabilities-grid { grid-template-columns: 1fr; }
+  }
+</style>

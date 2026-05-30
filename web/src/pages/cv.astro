@@ -1,0 +1,420 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="CV"
+  description="Currículum vitae de Andrés Cisneros, artista audiovisual de Lima, Perú."
+>
+  <div class="page-cv">
+    <div class="container">
+
+      <header class="page-header">
+        <div class="header-label">
+          <span class="label-line"></span>
+          <span>Currículum vitae</span>
+        </div>
+        <h1 class="page-title">CV</h1>
+
+        <div class="cv-actions">
+          <!-- TODO: cuando tengas CV PDF, reemplazar placeholder por enlace real -->
+          <div class="cv-download-placeholder">
+            <span class="todo">[TODO: subir CV PDF a /public/cv/cv-andres-cisneros.pdf]</span>
+            <!-- Cuando esté listo, descomentar:
+            <a href="/cv/cv-andres-cisneros.pdf" download class="btn-download">
+              Descargar CV (PDF) ↓
+            </a>
+            -->
+          </div>
+        </div>
+      </header>
+
+      <div class="cv-layout">
+
+        <!-- Sección: Formación -->
+        <section class="cv-section" aria-labelledby="cv-formacion">
+          <h2 id="cv-formacion" class="cv-section-title">Formación</h2>
+          <div class="cv-items">
+            <div class="cv-item">
+              <span class="cv-year"><!-- TODO: año --></span>
+              <div class="cv-item-body">
+                <strong>Comunicación Audiovisual</strong>
+                <span class="cv-inst">Pontificia Universidad Católica del Perú (PUCP) · Lima, Perú</span>
+                <span class="cv-note todo">[TODO: agregar año de inicio/egreso]</span>
+              </div>
+            </div>
+            <!-- TODO: agregar formación adicional (talleres, seminarios, cursos) -->
+          </div>
+        </section>
+
+        <!-- Sección: Proyectos -->
+        <section class="cv-section" aria-labelledby="cv-proyectos">
+          <h2 id="cv-proyectos" class="cv-section-title">Proyectos seleccionados</h2>
+          <div class="cv-items">
+            <div class="cv-item">
+              <span class="cv-year">2024</span>
+              <div class="cv-item-body">
+                <strong>Sucesos al amanecer</strong>
+                <span class="cv-inst">Instalación sonora · Lago Titicaca, Puno, Perú</span>
+              </div>
+            </div>
+            <div class="cv-item">
+              <span class="cv-year">2024</span>
+              <div class="cv-item-body">
+                <strong>QLABZO</strong>
+                <span class="cv-inst">Software de show-control · Lima, Perú</span>
+              </div>
+            </div>
+            <div class="cv-item">
+              <span class="cv-year">2023</span>
+              <div class="cv-item-body">
+                <strong>Entropía</strong>
+                <span class="cv-inst">Instalación audiovisual interactiva · <span class="todo">[TODO: espacio/ciudad]</span></span>
+              </div>
+            </div>
+            <div class="cv-item">
+              <span class="cv-year">2024</span>
+              <div class="cv-item-body">
+                <strong>Sin cuerpo en escena</strong>
+                <span class="cv-inst">Investigación escénica · Lima, Perú</span>
+              </div>
+            </div>
+            <!-- TODO: agregar proyectos adicionales -->
+          </div>
+        </section>
+
+        <!-- Sección: Exhibiciones / Presentaciones -->
+        <section class="cv-section" aria-labelledby="cv-exhibiciones">
+          <h2 id="cv-exhibiciones" class="cv-section-title">Exhibiciones y presentaciones</h2>
+          <div class="cv-empty">
+            <p class="todo">[TODO: agregar exhibiciones, festivales, presentaciones en que hayas participado]</p>
+            <p class="cv-note">No inventar. Solo agregar cuando tengas información real.</p>
+          </div>
+        </section>
+
+        <!-- Sección: Residencias -->
+        <section class="cv-section" aria-labelledby="cv-residencias">
+          <h2 id="cv-residencias" class="cv-section-title">Residencias</h2>
+          <div class="cv-empty">
+            <p class="todo">[TODO: agregar residencias si las hay]</p>
+          </div>
+        </section>
+
+        <!-- Sección: Talleres y formación complementaria -->
+        <section class="cv-section" aria-labelledby="cv-talleres">
+          <h2 id="cv-talleres" class="cv-section-title">Talleres y formación complementaria</h2>
+          <div class="cv-empty">
+            <p class="todo">[TODO: agregar talleres, seminarios, laboratorios relevantes]</p>
+          </div>
+        </section>
+
+        <!-- Sección: Colaboraciones -->
+        <section class="cv-section" aria-labelledby="cv-colaboraciones">
+          <h2 id="cv-colaboraciones" class="cv-section-title">Colaboraciones</h2>
+          <div class="cv-empty">
+            <p class="todo">[TODO: agregar colaboraciones con artistas, compañías, instituciones]</p>
+          </div>
+        </section>
+
+        <!-- Sección: Habilidades técnicas -->
+        <section class="cv-section" aria-labelledby="cv-habilidades">
+          <h2 id="cv-habilidades" class="cv-section-title">Habilidades técnicas</h2>
+          <div class="skills-cols">
+            <div>
+              <h3 class="skills-group-title">Electrónica</h3>
+              <ul class="skills-list">
+                <li>ESP32 / Arduino</li>
+                <li>Sensores (BH1750, DS18B20, IMU)</li>
+                <li>DAC (PCM5102A)</li>
+                <li>Amplificación de audio</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="skills-group-title">Software</h3>
+              <ul class="skills-list">
+                <li>Rust / Tauri</li>
+                <li>Svelte / JavaScript</li>
+                <li>Python</li>
+                <li><!-- TODO: agregar más --></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="skills-group-title">Protocolos</h3>
+              <ul class="skills-list">
+                <li>DMX512 / Art-Net</li>
+                <li>OSC / MIDI</li>
+                <li>I2C / SPI / UART</li>
+                <li>NDI</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="skills-group-title">Herramientas</h3>
+              <ul class="skills-list">
+                <li><!-- TODO: listar DAW, VJ software, etc. --></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contacto -->
+        <section class="cv-section cv-contact" aria-labelledby="cv-contacto">
+          <h2 id="cv-contacto" class="cv-section-title">Contacto</h2>
+          <div class="cv-contact-grid">
+            <div>
+              <span class="cv-contact-label">Email</span>
+              <a href="mailto:a.cisneros@pucp.edu.pe" class="cv-contact-val">a.cisneros@pucp.edu.pe</a>
+            </div>
+            <div>
+              <span class="cv-contact-label">Web</span>
+              <span class="cv-contact-val todo">[TODO: URL definitiva de la web]</span>
+            </div>
+            <div>
+              <span class="cv-contact-label">Basado en</span>
+              <span class="cv-contact-val">Lima, Perú</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-cv {
+    padding-block: var(--space-2xl);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+  }
+
+  .header-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: var(--space-md);
+  }
+
+  .label-line {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--copper);
+    flex-shrink: 0;
+  }
+
+  .page-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  .cv-download-placeholder {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: var(--space-md);
+    border: 1px dashed var(--copper-dim);
+    background: rgba(184, 115, 51, 0.04);
+    align-self: flex-start;
+  }
+
+  .btn-download {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--copper-light);
+    text-decoration: none;
+    border: 1px solid var(--copper);
+    padding: 0.6em 1.4em;
+    display: inline-block;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+
+  .btn-download:hover {
+    background: var(--copper);
+    color: var(--bg);
+  }
+
+  /* Layout */
+  .cv-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .cv-section {
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cv-section-title {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 400;
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Items */
+  .cv-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .cv-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: var(--space-md);
+    align-items: baseline;
+  }
+
+  .cv-year {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    padding-top: 0.15rem;
+  }
+
+  .cv-item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .cv-item-body strong {
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .cv-inst {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .cv-note {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+
+  .cv-note.todo {
+    font-family: var(--font-mono);
+    color: var(--copper);
+    background: rgba(184, 115, 51, 0.07);
+    border: 1px solid var(--copper-dim);
+    padding: 0.1em 0.4em;
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.65rem;
+  }
+
+  /* Empty */
+  .cv-empty {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .cv-empty .cv-note {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* Skills */
+  .skills-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .skills-group-title {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .skills-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .skills-list li {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding-left: 0.5rem;
+    position: relative;
+  }
+
+  .skills-list li::before {
+    content: '—';
+    position: absolute;
+    left: -0.5rem;
+    color: var(--copper-dim);
+    font-size: 0.65rem;
+  }
+
+  .skills-list li:empty { display: none; }
+
+  /* Contact */
+  .cv-contact-grid {
+    display: flex;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+  }
+
+  .cv-contact-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.25rem;
+  }
+
+  .cv-contact-val {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  a.cv-contact-val:hover {
+    color: var(--copper-light);
+  }
+
+  @media (max-width: 768px) {
+    .skills-cols { grid-template-columns: repeat(2, 1fr); }
+    .cv-item { grid-template-columns: 48px 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .skills-cols { grid-template-columns: 1fr; }
+  }
+</style>

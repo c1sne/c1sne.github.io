@@ -1,0 +1,60 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+interface Project {
+  id: string;
+  data: {
+    title: string;
+    slug: string;
+    year: number;
+    location?: string;
+    categories: string[];
+    shortDescription: string;
+    coverImage?: string;
+    featured?: boolean;
+    hidden?: boolean;
+    order?: number;
+  };
+}
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="project-grid">
+  {projects.map((project) => (
+    <ProjectCard
+      title={project.data.title}
+      slug={project.data.slug}
+      year={project.data.year}
+      location={project.data.location}
+      categories={project.data.categories}
+      shortDescription={project.data.shortDescription}
+      coverImage={project.data.coverImage}
+      featured={project.data.featured}
+    />
+  ))}
+</div>
+
+<style>
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .project-grid > :global(*) {
+    background: var(--bg-2);
+  }
+
+  @media (max-width: 640px) {
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,160 @@
+---
+interface Link {
+  label: string;
+  url: string;
+}
+
+interface Props {
+  year: number;
+  location?: string;
+  status?: string;
+  credits?: string;
+  technicalDetails?: string;
+  links?: Link[];
+}
+
+const { year, location, status, credits, technicalDetails, links } = Astro.props;
+
+const statusLabel: Record<string, string> = {
+  active: 'Activo',
+  archived: 'Archivado',
+  ongoing: 'En curso',
+};
+---
+
+<aside class="project-meta">
+  <h2 class="meta-heading">Ficha</h2>
+
+  <dl class="meta-list">
+    <div class="meta-row">
+      <dt>Año</dt>
+      <dd>{year}</dd>
+    </div>
+
+    {location && (
+      <div class="meta-row">
+        <dt>Lugar</dt>
+        <dd>{location}</dd>
+      </div>
+    )}
+
+    {status && (
+      <div class="meta-row">
+        <dt>Estado</dt>
+        <dd>{statusLabel[status] || status}</dd>
+      </div>
+    )}
+
+    {credits && (
+      <div class="meta-row meta-row--block">
+        <dt>Créditos</dt>
+        <dd set:html={credits.replace(/\n/g, '<br>')}></dd>
+      </div>
+    )}
+
+    {technicalDetails && (
+      <div class="meta-row meta-row--block">
+        <dt>Detalles técnicos</dt>
+        <dd><pre class="tech-details">{technicalDetails}</pre></dd>
+      </div>
+    )}
+
+    {links && links.length > 0 && links.some(l => l.url) && (
+      <div class="meta-row meta-row--block">
+        <dt>Links</dt>
+        <dd>
+          {links.map(link => link.url ? (
+            <a href={link.url} target="_blank" rel="noopener noreferrer" class="meta-link">
+              {link.label} →
+            </a>
+          ) : (
+            <span class="todo">{link.label}</span>
+          ))}
+        </dd>
+      </div>
+    )}
+  </dl>
+</aside>
+
+<style>
+  .project-meta {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    padding: var(--space-lg);
+  }
+
+  .meta-heading {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: var(--space-lg);
+    font-weight: 400;
+  }
+
+  .meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: var(--space-md);
+    align-items: baseline;
+  }
+
+  .meta-row--block {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  dt {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  dd {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .tech-details {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    padding: var(--space-md);
+    white-space: pre-wrap;
+    overflow-x: auto;
+    line-height: 1.7;
+  }
+
+  .meta-link {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--copper-light);
+    text-decoration: none;
+    margin-bottom: 0.35rem;
+    transition: color 0.2s;
+  }
+
+  .meta-link:hover {
+    color: var(--white);
+  }
+
+  .todo {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    color: var(--copper);
+    opacity: 0.7;
+  }
+</style>

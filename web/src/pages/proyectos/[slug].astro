@@ -1,0 +1,226 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectHero from '../../components/ProjectHero.astro';
+import ProjectMeta from '../../components/ProjectMeta.astro';
+import MediaPlaceholder from '../../components/MediaPlaceholder.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects
+    .filter(p => !p.data.hidden)
+    .map(p => ({
+      params: { slug: p.data.slug },
+      props: { project: p },
+    }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const d = project.data;
+---
+
+<Layout
+  title={d.title}
+  description={d.shortDescription}
+  image={d.coverImage || ''}
+>
+  <article class="project-page">
+
+    <ProjectHero
+      title={d.title}
+      year={d.year}
+      location={d.location}
+      categories={d.categories}
+      coverImage={d.coverImage}
+      status={d.status}
+    />
+
+    <div class="container project-body">
+
+      <!-- Descripción breve -->
+      <div class="project-lead">
+        <p class="lead-text">{d.shortDescription}</p>
+      </div>
+
+      <div class="project-layout">
+
+        <!-- Contenido principal -->
+        <div class="project-content">
+
+          {d.longDescription ? (
+            <div class="prose project-desc">
+              {d.longDescription.split('\n\n').map((para: string) => (
+                <p>{para}</p>
+              ))}
+            </div>
+          ) : (
+            <p class="todo">[TODO: agregar descripción completa del proyecto]</p>
+          )}
+
+          <!-- Video -->
+          <div class="project-video">
+            <h2 class="content-section-title">Documentación en video</h2>
+            {d.videoUrl ? (
+              d.videoUrl.includes('youtube') || d.videoUrl.includes('vimeo') ? (
+                <div class="video-embed">
+                  <iframe
+                    src={d.videoUrl}
+                    title={`Video: ${d.title}`}
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              ) : (
+                <video controls class="video-local">
+                  <source src={d.videoUrl} />
+                  Tu navegador no soporta video HTML5.
+                </video>
+              )
+            ) : (
+              <MediaPlaceholder type="video" aspect="16/9" label="TODO: agregar video documental (Vimeo, YouTube o archivo local)" />
+            )}
+          </div>
+
+          <!-- Contenido Markdown extra -->
+          <div class="prose markdown-content">
+            <Content />
+          </div>
+
+        </div>
+
+        <!-- Sidebar con ficha -->
+        <aside class="project-sidebar">
+          <ProjectMeta
+            year={d.year}
+            location={d.location}
+            status={d.status}
+            credits={d.credits}
+            technicalDetails={d.technicalDetails}
+            links={d.links}
+          />
+
+          <div class="sidebar-nav">
+            <a href="/proyectos" class="back-link">← Todos los proyectos</a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .project-page {
+    padding-bottom: var(--space-2xl);
+  }
+
+  .project-lead {
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--space-xl);
+  }
+
+  .lead-text {
+    font-size: 1.15rem;
+    color: var(--text);
+    line-height: 1.75;
+    max-width: 680px;
+    font-weight: 400;
+  }
+
+  .project-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .project-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .project-desc p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+  }
+
+  .content-section-title {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-bottom: var(--space-md);
+  }
+
+  .video-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
+  .video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border);
+  }
+
+  .video-local {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+  }
+
+  .markdown-content :global(p) {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+  }
+
+  .markdown-content :global(p:empty) { display: none; }
+
+  .project-sidebar {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-lg));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .sidebar-nav {
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border);
+  }
+
+  .back-link {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--copper-light);
+  }
+
+  @media (max-width: 900px) {
+    .project-layout {
+      grid-template-columns: 1fr;
+    }
+    .project-sidebar {
+      position: static;
+    }
+  }
+</style>

@@ -1,0 +1,138 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <p class="footer-name">Andrés Cisneros</p>
+      <p class="footer-tagline">Artista audiovisual · Lima, Perú</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Navegación secundaria">
+      <a href="/proyectos">Proyectos</a>
+      <a href="/investigacion">Investigación</a>
+      <a href="/bio">Bio</a>
+      <a href="/cv">CV</a>
+      <a href="/contacto">Contacto</a>
+    </nav>
+
+    <div class="footer-contact">
+      <a href="mailto:a.cisneros@pucp.edu.pe" class="footer-email">
+        a.cisneros@pucp.edu.pe
+      </a>
+      <div class="footer-links">
+        <!-- TODO: agregar links a Vimeo, Instagram, GitHub u otros -->
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <span class="footer-copy">&copy; {year} Andrés Cisneros</span>
+      <span class="footer-credit">Comunicación Audiovisual · PUCP · Lima</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    background: var(--bg);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: var(--space-xl);
+    align-items: start;
+    padding-bottom: var(--space-xl);
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-nav a {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-nav a:hover {
+    color: var(--white);
+  }
+
+  .footer-email {
+    font-size: 0.85rem;
+    color: var(--copper-light);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.75rem;
+    transition: color 0.2s;
+  }
+
+  .footer-email:hover {
+    color: var(--white);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-block: var(--space-md);
+  }
+
+  .footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .footer-copy,
+  .footer-credit {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .footer-nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+  }
+</style>
