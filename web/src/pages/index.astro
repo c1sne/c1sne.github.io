@@ -57,9 +57,14 @@ const featuredProjects = allProjects
 
 <style>
   /* ── Canvas section ─────────────────────────────────────────── */
+  :global(.site-header) {
+    background: rgba(10, 10, 10, 0.36);
+    border-bottom-color: transparent;
+  }
+
   .hydra-section {
     width: 100%;
-    padding-top: var(--nav-h);
+    margin-top: calc(var(--nav-h) * -1);
   }
 
   .hydra-outer {
