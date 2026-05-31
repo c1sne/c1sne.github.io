@@ -12,6 +12,7 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     order: z.number().default(99),
     hidden: z.boolean().default(false),
+    section: z.enum(['av', 'escenico', 'xr']).default('av'),
     categories: z.array(z.string()).default([]),
     shortDescription: z.string(),
     longDescription: z.string().optional(),

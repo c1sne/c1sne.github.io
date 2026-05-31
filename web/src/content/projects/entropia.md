@@ -7,6 +7,7 @@ status: "archived"
 featured: true
 order: 3
 hidden: false
+section: "xr"
 categories:
   - "instalación interactiva"
   - "audiovisual"

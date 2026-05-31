@@ -1,0 +1,193 @@
+<div class="signal-field" aria-hidden="true">
+  <canvas data-signal-field></canvas>
+  <div class="signal-field__grid"></div>
+</div>
+
+<script>
+  const canvases = document.querySelectorAll('[data-signal-field]');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+  const fract = (value) => value - Math.floor(value);
+  const seeded = (seed) => fract(Math.sin(seed * 12.9898) * 43758.5453);
+
+  canvases.forEach((canvas) => {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const state = {
+      width: 0,
+      height: 0,
+      dpr: 1,
+      points: [],
+      pointer: { x: 0.68, y: 0.46, active: false },
+      frame: 0,
+      reduced: reducedMotion.matches,
+    };
+
+    const buildPoints = () => {
+      const count = clamp(Math.floor((state.width * state.height) / 42000), 18, 48);
+      state.points = Array.from({ length: count }, (_, index) => {
+        const x = seeded(index + 3) * state.width;
+        const y = seeded(index + 21) * state.height;
+        return {
+          x,
+          y,
+          phase: seeded(index + 47) * Math.PI * 2,
+          speed: 0.00035 + seeded(index + 79) * 0.00055,
+          reach: 58 + seeded(index + 91) * 90,
+        };
+      });
+    };
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      state.width = Math.max(rect.width, 1);
+      state.height = Math.max(rect.height, 1);
+      state.dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(state.width * state.dpr);
+      canvas.height = Math.floor(state.height * state.dpr);
+      ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+      buildPoints();
+      draw(performance.now());
+    };
+
+    const drawWave = (time, y, amplitude, alpha) => {
+      ctx.beginPath();
+      for (let x = 0; x <= state.width; x += 12) {
+        const mousePull = state.pointer.active
+          ? Math.max(0, 1 - Math.abs(x - state.pointer.x * state.width) / 420)
+          : 0;
+        const signal = Math.sin(x * 0.012 + time * 0.00055) * amplitude;
+        const pulse = Math.sin(x * 0.031 - time * 0.0011) * amplitude * 0.35;
+        const pointY = y + signal + pulse - mousePull * amplitude * 3;
+        if (x === 0) ctx.moveTo(x, pointY);
+        else ctx.lineTo(x, pointY);
+      }
+      ctx.strokeStyle = `rgba(212, 168, 67, ${alpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    };
+
+    const draw = (time) => {
+      ctx.clearRect(0, 0, state.width, state.height);
+
+      const pointerX = state.pointer.x * state.width;
+      const pointerY = state.pointer.y * state.height;
+
+      drawWave(time, state.height * 0.28, 6, 0.18);
+      drawWave(time + 800, state.height * 0.52, 4, 0.11);
+      drawWave(time + 1600, state.height * 0.73, 5, 0.09);
+
+      state.points.forEach((point, index) => {
+        const driftX = Math.cos(time * point.speed + point.phase) * 14;
+        const driftY = Math.sin(time * point.speed * 1.4 + point.phase) * 10;
+        const x = point.x + driftX;
+        const y = point.y + driftY;
+
+        for (let nextIndex = index + 1; nextIndex < state.points.length; nextIndex += 1) {
+          const next = state.points[nextIndex];
+          const nextX = next.x + Math.cos(time * next.speed + next.phase) * 14;
+          const nextY = next.y + Math.sin(time * next.speed * 1.4 + next.phase) * 10;
+          const distance = Math.hypot(x - nextX, y - nextY);
+          const reach = Math.min(point.reach, next.reach);
+
+          if (distance < reach) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(nextX, nextY);
+            ctx.strokeStyle = `rgba(184, 115, 51, ${0.05 * (1 - distance / reach)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+
+        const pointerDistance = Math.hypot(x - pointerX, y - pointerY);
+        const pointerAlpha = state.pointer.active ? Math.max(0, 1 - pointerDistance / 260) : 0;
+        if (pointerAlpha > 0) {
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(pointerX, pointerY);
+          ctx.strokeStyle = `rgba(212, 168, 67, ${0.16 * pointerAlpha})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+
+        ctx.beginPath();
+        ctx.arc(x, y, 1.1 + pointerAlpha * 1.2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(240, 236, 228, ${0.12 + pointerAlpha * 0.22})`;
+        ctx.fill();
+      });
+
+      if (!state.reduced) {
+        state.frame = window.requestAnimationFrame(draw);
+      }
+    };
+
+    const updatePointer = (event) => {
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      state.pointer.x = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+      state.pointer.y = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+      state.pointer.active = true;
+    };
+
+    const clearPointer = () => {
+      state.pointer.active = false;
+    };
+
+    reducedMotion.addEventListener('change', (event) => {
+      state.reduced = event.matches;
+      window.cancelAnimationFrame(state.frame);
+      draw(performance.now());
+    });
+
+    window.addEventListener('resize', resize, { passive: true });
+    window.addEventListener('pointermove', updatePointer, { passive: true });
+    window.addEventListener('pointerleave', clearPointer, { passive: true });
+
+    resize();
+  });
+</script>
+
+<style>
+  .signal-field {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, rgba(184, 115, 51, 0.04) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(184, 115, 51, 0.025) 1px, transparent 1px);
+    background-size: 96px 96px, 96px 96px;
+    opacity: 0.92;
+  }
+
+  .signal-field canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .signal-field__grid {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, transparent 0 54%, rgba(10, 10, 10, 0.66) 78% 100%),
+      linear-gradient(0deg, rgba(10, 10, 10, 0.82), transparent 18% 72%, rgba(10, 10, 10, 0.9));
+  }
+
+  @media (max-width: 720px) {
+    .signal-field {
+      background-size: 72px 72px, 72px 72px;
+      opacity: 0.72;
+    }
+
+    .signal-field__grid {
+      background:
+        linear-gradient(90deg, rgba(10, 10, 10, 0.24), rgba(10, 10, 10, 0.72)),
+        linear-gradient(0deg, rgba(10, 10, 10, 0.9), transparent 22% 68%, rgba(10, 10, 10, 0.92));
+    }
+  }
+</style>

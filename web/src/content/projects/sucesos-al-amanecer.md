@@ -7,6 +7,7 @@ status: "active"
 featured: true
 order: 1
 hidden: false
+section: "av"
 categories:
   - "instalación sonora"
   - "electrónica"

@@ -7,6 +7,7 @@ status: "ongoing"
 featured: false
 order: 4
 hidden: false
+section: "escenico"
 categories:
   - "investigación escénica"
   - "dramaturgia técnica"

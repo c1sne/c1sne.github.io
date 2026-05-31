@@ -3,19 +3,45 @@ import Layout from '../layouts/Layout.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
 import { getCollection } from 'astro:content';
 
-const allProjects = await getCollection('projects');
-
-const visibleProjects = allProjects
+const all = await getCollection('projects');
+const visible = all
   .filter(p => !p.data.hidden)
   .sort((a, b) => a.data.order - b.data.order);
 
-const featuredProjects = visibleProjects.filter(p => p.data.featured);
-const otherProjects = visibleProjects.filter(p => !p.data.featured);
+const bySection = {
+  av:       visible.filter(p => p.data.section === 'av'),
+  escenico: visible.filter(p => p.data.section === 'escenico'),
+  xr:       visible.filter(p => p.data.section === 'xr'),
+};
+
+const sections = [
+  {
+    key: 'av',
+    label: 'AV',
+    title: 'Audiovisual',
+    desc: 'Instalación sonora, video, electrónica y sistemas de síntesis audiovisual.',
+    projects: bySection.av,
+  },
+  {
+    key: 'escenico',
+    label: 'Escénico',
+    title: 'Escénico',
+    desc: 'Dramaturgia técnica, show-control, escena expandida y sistemas en vivo.',
+    projects: bySection.escenico,
+  },
+  {
+    key: 'xr',
+    label: 'XR',
+    title: 'XR',
+    desc: 'Realidad extendida, instalación interactiva, VR y entornos inmersivos.',
+    projects: bySection.xr,
+  },
+];
 ---
 
 <Layout
   title="Proyectos"
-  description="Proyectos seleccionados de Andrés Cisneros. Instalación sonora, software creativo, instalación interactiva, investigación escénica."
+  description="Proyectos de Andrés Cisneros organizados por práctica: Audiovisual, Escénico y XR."
 >
   <div class="page-projects">
     <div class="container">
@@ -23,36 +49,41 @@ const otherProjects = visibleProjects.filter(p => !p.data.featured);
       <header class="page-header">
         <div class="header-label">
           <span class="label-line"></span>
-          <span>Trabajo</span>
+          <span>Obra</span>
         </div>
         <h1 class="page-title">Proyectos</h1>
-        <p class="page-desc">
-          Selección de proyectos de instalación, investigación, software y escena.
-          <!-- TODO: ajustar descripción con texto propio -->
-        </p>
+
+        <!-- Índice de secciones -->
+        <nav class="section-index" aria-label="Secciones de proyectos">
+          {sections.map(s => (
+            <a href={`#${s.key}`} class="index-item">
+              <span class="index-label">{s.label}</span>
+              <span class="index-count">{s.projects.length}</span>
+            </a>
+          ))}
+        </nav>
       </header>
 
-      {featuredProjects.length > 0 && (
-        <section aria-labelledby="featured-h2" class="projects-section">
-          <h2 id="featured-h2" class="projects-section-label">Destacados</h2>
-          <ProjectGrid projects={featuredProjects} />
-        </section>
-      )}
+      <!-- Tres secciones -->
+      {sections.map((s) => (
+        <section id={s.key} class="projects-section" aria-labelledby={`h-${s.key}`}>
+          <div class="section-head">
+            <div class="section-head-left">
+              <span class="section-tag">{s.label}</span>
+              <h2 id={`h-${s.key}`} class="section-title">{s.title}</h2>
+              <p class="section-desc">{s.desc}</p>
+            </div>
+          </div>
 
-      {otherProjects.length > 0 && (
-        <section aria-labelledby="other-h2" class="projects-section">
-          {featuredProjects.length > 0 && (
-            <h2 id="other-h2" class="projects-section-label">Otros proyectos</h2>
+          {s.projects.length > 0 ? (
+            <ProjectGrid projects={s.projects} />
+          ) : (
+            <div class="section-empty">
+              <span class="todo">[TODO: agregar proyectos {s.label} — asignar section: "{s.key}" en el frontmatter]</span>
+            </div>
           )}
-          <ProjectGrid projects={otherProjects} />
         </section>
-      )}
-
-      {visibleProjects.length === 0 && (
-        <div class="empty-state">
-          <p class="todo">[TODO: agregar proyectos en src/content/projects/]</p>
-        </div>
-      )}
+      ))}
 
     </div>
   </div>
@@ -63,6 +94,7 @@ const otherProjects = visibleProjects.filter(p => !p.data.featured);
     padding-block: var(--space-2xl);
   }
 
+  /* ── Header ─────────────────────────────────────────────────── */
   .page-header {
     margin-bottom: var(--space-2xl);
     padding-bottom: var(--space-xl);
@@ -93,33 +125,120 @@ const otherProjects = visibleProjects.filter(p => !p.data.featured);
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 300;
     color: var(--white);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-xl);
   }
 
-  .page-desc {
-    font-size: 1rem;
+  /* Índice de secciones */
+  .section-index {
+    display: flex;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    width: fit-content;
+  }
+
+  .index-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6em 1.2em;
+    background: var(--bg-2);
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .index-item:hover {
+    background: var(--bg-3);
+  }
+
+  .index-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--text-muted);
-    line-height: 1.7;
-    max-width: 560px;
+    transition: color 0.15s;
   }
 
+  .index-item:hover .index-label {
+    color: var(--copper-light);
+  }
+
+  .index-count {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    padding: 0.1em 0.45em;
+    min-width: 1.4em;
+    text-align: center;
+  }
+
+  /* ── Sección individual ─────────────────────────────────────── */
   .projects-section {
     margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: calc(var(--nav-h) + 2rem);
   }
 
-  .projects-section-label {
+  .projects-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--space-xl);
+  }
+
+  .section-head-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .section-tag {
     font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-dim);
-    font-weight: 400;
-    margin-bottom: var(--space-lg);
+    color: var(--copper);
   }
 
-  .empty-state {
-    padding: var(--space-2xl);
-    text-align: center;
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .section-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 480px;
+    margin-top: 0.25rem;
+  }
+
+  .section-empty {
+    padding: var(--space-xl);
     border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 640px) {
+    .section-index {
+      width: 100%;
+    }
+    .index-item {
+      flex: 1;
+      justify-content: center;
+    }
   }
 </style>

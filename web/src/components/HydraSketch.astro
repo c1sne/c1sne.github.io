@@ -1,0 +1,64 @@
+---
+// Hydra synth live-coding visual — carga hydra-synth desde CDN.
+// El sketch rescata el visual del antiguo c1sne.github.io.
+---
+
+<div class="hydra-wrap" aria-hidden="true">
+  <canvas id="hydra-canvas"></canvas>
+</div>
+
+<script is:inline>
+  (function () {
+    var canvas = document.getElementById('hydra-canvas');
+    if (!canvas) return;
+
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/hydra-synth@1.3.29/dist/hydra-synth.js';
+
+    s.onload = function () {
+      new Hydra({
+        canvas: canvas,
+        detectAudio: false,
+        enableStreamCapture: false,
+        pb: false,
+      });
+
+      // Visual antiguo rescatado de c1sne.github.io:
+      // shape/voronoi/pixelate con acumulación, ajustado solo para vivir
+      // dentro de la nueva web.
+      shape(6)
+        .modulate(voronoi(2000))
+        .pixelate(30, 3)
+        .layer(noise(3).luma(0.1).scale(4, 4))
+        .blend(src(o0).luma(0.1).modulate(voronoi(0.1)))
+        .colorama(0.06, 0, 0.1)
+        .blend(o0)
+        .blend(o0)
+        .out(o0);
+    };
+
+    s.onerror = function () {
+      // fallback silencioso: el fondo oscuro del wrapper ya es presentable
+    };
+
+    document.head.appendChild(s);
+  })();
+</script>
+
+<style>
+  .hydra-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    background: #0a0a0a;
+    overflow: hidden;
+  }
+
+  #hydra-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+</style>

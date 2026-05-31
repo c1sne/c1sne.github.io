@@ -7,6 +7,7 @@ status: "ongoing"
 featured: true
 order: 2
 hidden: false
+section: "escenico"
 categories:
   - "software creativo"
   - "show-control"
