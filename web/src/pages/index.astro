@@ -19,12 +19,14 @@ const featuredProjects = allProjects
     <div class="hydra-outer">
       <HydraSketch />
 
-      <!-- Overlay mínimo -->
-      <div class="hydra-overlay">
-        <div class="overlay-name">
-          <span class="name-main">Andrés Cisneros</span>
-          <span class="name-sub">audiovisual · escena · sonido · Lima</span>
-        </div>
+      <!-- Bordes difuminados arriba y abajo -->
+      <div class="hydra-fade hydra-fade--top"    aria-hidden="true"></div>
+      <div class="hydra-fade hydra-fade--bottom" aria-hidden="true"></div>
+
+      <!-- Nombre en esquina inferior izquierda -->
+      <div class="hydra-corner" aria-hidden="true">
+        <span class="name-main">Andrés Cisneros</span>
+        <span class="name-sub">audiovisual · escena · sonido · Lima</span>
       </div>
     </div>
   </section>
@@ -72,42 +74,63 @@ const featuredProjects = allProjects
     width: 100%;
   }
 
-  /* Overlay de texto sobre el canvas — pegado al borde derecho, vertical */
-  .hydra-overlay {
+  /* ── Fades arriba y abajo ───────────────────────────────────── */
+  .hydra-fade {
     position: absolute;
-    inset: 0;
+    left: 0;
+    right: 0;
+    height: 22%;
     pointer-events: none;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: clamp(0.75rem, 2vw, 1.5rem);
+    z-index: 2;
   }
 
-  .overlay-name {
+  .hydra-fade--top {
+    top: 0;
+    background: linear-gradient(
+      to bottom,
+      #0a0a0a 0%,
+      rgba(10, 10, 10, 0.6) 40%,
+      transparent 100%
+    );
+  }
+
+  .hydra-fade--bottom {
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      #0a0a0a 0%,
+      rgba(10, 10, 10, 0.6) 40%,
+      transparent 100%
+    );
+  }
+
+  /* ── Nombre en esquina inferior izquierda ───────────────────── */
+  .hydra-corner {
+    position: absolute;
+    bottom: clamp(1rem, 3vw, 2rem);
+    left: clamp(1rem, 3vw, 2rem);
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 0.4rem;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
+    gap: 0.25rem;
+    pointer-events: none;
+    z-index: 3;
   }
 
   .name-main {
     font-family: var(--font-display);
-    font-size: clamp(0.75rem, 1.4vw, 1rem);
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
     font-weight: 400;
-    color: rgba(240, 236, 228, 0.75);
-    letter-spacing: 0.05em;
+    color: rgba(240, 236, 228, 0.82);
+    letter-spacing: 0.01em;
     line-height: 1;
   }
 
   .name-sub {
     font-family: var(--font-mono);
-    font-size: clamp(0.5rem, 0.75vw, 0.62rem);
-    letter-spacing: 0.12em;
+    font-size: clamp(0.55rem, 0.8vw, 0.68rem);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(184, 115, 51, 0.7);
+    color: rgba(184, 115, 51, 0.75);
   }
 
   /* ── Projects strip ─────────────────────────────────────────── */
